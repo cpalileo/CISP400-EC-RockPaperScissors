@@ -11,9 +11,42 @@
 #include<iostream>
 using namespace std;
 
+class Game {
+private:
+    int PlayerScore;
+    int CompScore;
+    int GameCount;
+public:
+    void PlayGame(){
+        // Game logic goes here
+    };
+    
+    int DisplayScore(){
+        // logic to display score
+    };
+};
 
 
-main() {
+class HumanPlayer {
+private:
+    char Choices ['R', 'r', 'P', 'p', 'S', 's'];
+public:
+    char PlayerChoice() {
+        // Logic to make player choice
+    }
+};
+
+
+class CompPlayer {
+    void RandomGenerator() {
+        // Logic to random generate computer move
+    }
+};
+
+//function prototypes
+void titleScreen();
+
+int main() {
     titleScreen();
 };
 
