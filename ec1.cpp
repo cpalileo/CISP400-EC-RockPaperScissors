@@ -23,12 +23,11 @@ public:
 }
 
     void PrintMenu() {
-        cout << "\n**** Main Menu ****" << endl;
-        cout << "<A>dd Inventory" << endl;
-        cout << "<D>elete Inventory" << endl;
-        cout << "<E>dit Inventory" << endl;
-        cout << "<P>rint Inventory" << endl;
-        cout << "<Q>uit Program" << endl;
+        cout << "\n**** What would you like to play? ****" << endl;
+        cout << "<R>ock" << endl;
+        cout << "<P>aper" << endl;
+        cout << "<S>cissors" << endl;
+        cout << "<Q>uit" << endl;
     }
 
         char GetMenuChoice(string prompt) {
@@ -70,6 +69,7 @@ public:
 
     void PlayGame(){
         PrintMenu();
+        GetMenuChoice("Enter letter of menu item: ");
         GameCount += 1;
 
     };
