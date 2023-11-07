@@ -14,13 +14,13 @@ using namespace std;
 class MenuManager {
 public:
     void TitleScreen() {
-    cout << "   ___                  _                 ___ _                 _    " << endl;
-    cout << "  / _ \\__ _  ___   /\\_/(_)_ __   __ _    / __\\ |__   ___   ___ | |__ " << endl;
-    cout << " / /_)/ _` |/ _ \\  \\_ _/ | '_ \\ / _` |  / /  | '_ \\ / _ \\ / _ \\| '_ \\" << endl; 
-    cout << "/ ___/ (_| | (_) |  / \\| | | | | (_| | / /___| | | | (_) | (_) | |_) |" << endl;
-    cout << "\\/    \\__,_|\\___/   \\_/|_|_| |_|\\__, | \\____/|_| |_|\\___/ \\___/|_.__/ " << endl;
-    cout << "                                |___/                                 " << endl;
-}
+        cout << "   ___                  _                 ___ _                 _    " << endl;
+        cout << "  / _ \\__ _  ___   /\\_/(_)_ __   __ _    / __\\ |__   ___   ___ | |__ " << endl;
+        cout << " / /_)/ _` |/ _ \\  \\_ _/ | '_ \\ / _` |  / /  | '_ \\ / _ \\ / _ \\| '_ \\" << endl; 
+        cout << "/ ___/ (_| | (_) |  / \\| | | | | (_| | / /___| | | | (_) | (_) | |_) |" << endl;
+        cout << "\\/    \\__,_|\\___/   \\_/|_|_| |_|\\__, | \\____/|_| |_|\\___/ \\___/|_.__/ " << endl;
+        cout << "                                |___/                                 " << endl;
+    }
 
     void PrintMenu() {
         cout << "\n**** What would you like to play? ****" << endl;
@@ -46,18 +46,6 @@ public:
 
 };
 
-class HumanPlayer {
-private:
-    char Choices [6] = {'R', 'r', 'P', 'p', 'S', 's', 'Q', 'q'};
-public:
-    char PlayerChoice() {
-        char choice;
-        cout << "Player would you like to choose (r)ock, (p)aper, or (s)cissors" << endl;
-        cin >> choice;
-        return choice;
-    };
-};
-
 
 class Game:MenuManager {
 private:
@@ -80,6 +68,17 @@ public:
 };
 
 
+class HumanPlayer {
+private:
+    char Choices [8] = {'R', 'r', 'P', 'p', 'S', 's', 'Q', 'q'};
+public:
+    char PlayerChoice() {
+        char choice;
+        cout << "Player would you like to choose (r)ock, (p)aper, or (s)cissors" << endl;
+        cin >> choice;
+        return choice;
+    };
+};
 
 
 class CompPlayer {
@@ -95,8 +94,8 @@ int main() {
     Game game;
     char menuChoice;
 
-    do (
     menu.TitleScreen();
+    do (
     game.PlayGame();
     ) while {
         menuChoice != 'q'
