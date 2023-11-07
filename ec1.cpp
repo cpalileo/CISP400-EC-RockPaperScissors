@@ -48,7 +48,7 @@ public:
 
 class HumanPlayer {
 private:
-    char Choices [6] = {'R', 'r', 'P', 'p', 'S', 's'};
+    char Choices [6] = {'R', 'r', 'P', 'p', 'S', 's', 'Q', 'q'};
 public:
     char PlayerChoice() {
         char choice;
@@ -93,9 +93,14 @@ class CompPlayer {
 int main() {
     MenuManager menu;
     Game game;
+    char menuChoice;
 
+    do (
     menu.TitleScreen();
     game.PlayGame();
+    ) while {
+        menuChoice != 'q'
+    }
 };
 
 
