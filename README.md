@@ -1,13 +1,27 @@
 # rockpaperscissors
 
-Requirements Met:
+Pseudocode
+
+While choice != Q
+    Print Welcome Screen
+    Print Menu Choices (R, P, S, Q)
+
+    IF 
+        Play rock, comp random generate move, determine winner, update games, update scores
+        Play paper, comp random generate move, determine winner, update games, update scores
+        Play Scissors, comp random generate move, determine winner, update games, update scores
+
+Select Quit -> Print score -> Exit game
+
+
+## Requirements Met:
 Menu Display: There's a PrintMenu method within the MenuManager class which shows the options to the user.
 
 Player Choice: The HumanPlayer class has a method PlayerChoice that prompts the player to enter their choice.
 
 Game Loop: The Game class seems to be designed to control the gameplay. It includes methods that could be used in a loop to play the game, although the loop itself is not implemented in the main function.
 
-Requirements Not Met:
+## Requirements Not Met:
 Game Loop Until Exit: The actual game loop where the game continues until the player chooses to exit is not implemented. The main function does not contain a loop.
 
 Random Computer Choice: The CompPlayer class has a placeholder for a RandomGenerator method, but the logic for randomly determining the computer's choice is not implemented.
@@ -26,7 +40,7 @@ Displaying Total Number of Hands Played: There is no method or logic that displa
 
 Declaring the Game Winner: There is no method or logic that declares the game winner based on the total winning hands.
 
-Other Issues and Improvements:
+## Other Issues and Improvements:
 The MenuManager class's GetMenuChoice function consumes an extra character after reading the choice, which could lead to unexpected behavior.
 
 The HumanPlayer class's PlayerChoice method does not use the Choices array and does not validate if the choice is one of the expected inputs.

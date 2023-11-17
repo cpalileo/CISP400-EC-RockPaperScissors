@@ -8,8 +8,18 @@
 #              
 #******************************************************/
 
-#include<iostream>
+#include <iostream>
 using namespace std;
+
+class GameStats {
+private: 
+    int GamesPlayed = 0;
+    int YourScore = 0;
+    int CompScore = 0;
+
+public: 
+    // Methods go here
+};
 
 class MenuManager {
 public:
@@ -44,62 +54,87 @@ public:
         return choice;
     }
 
-};
-
-
-class Game:MenuManager {
-private:
-    int PlayerScore = 0;
-    int CompScore = 0;
-    int GameCount = 0;
-    int SelectMove;
-public:
-
-    void PlayGame(){
-        PrintMenu();
-        GetMenuChoice("Enter letter of menu item: ");
-        GameCount += 1;
-
-    };
-
-    int DisplayScore(){
-        // logic to display score
-    };
-};
-
-
-class HumanPlayer {
-private:
-    char Choices [8] = {'R', 'r', 'P', 'p', 'S', 's', 'Q', 'q'};
-public:
-    char PlayerChoice() {
-        char choice;
-        cout << "Player would you like to choose (r)ock, (p)aper, or (s)cissors" << endl;
-        cin >> choice;
-        return choice;
-    };
-};
-
-
-class CompPlayer {
-    void RandomGenerator() {
-        // Logic to random generate computer move
+    void ExitGame(){
+        cout << "\nAfter playing " << "##" << " games" << endl;
+        cout << "You won " << "##" << " times" << endl;
+        cout << "And the Computer won " << "##" << " times" << endl;
+        cout << "Thank you for playing! Goodbye!\n" << endl;
     }
+
 };
+
+
+// class Game:MenuManager {
+// private:
+//     int PlayerScore = 0;
+//     int CompScore = 0;
+//     int GameCount = 0;
+//     int SelectMove;
+
+// public:
+//     void PlayGame(){
+//         PrintMenu();
+
+//         GameCount += 1;
+
+//     };
+
+//     int DisplayScore(){
+//         // logic to display score
+//     };
+// };
+
+
+// class PlayerMoves {
+// private:
+//     char Choices [8] = {'R', 'r', 'P', 'p', 'S', 's', 'Q', 'q'};
+// public:
+//     char PlayerChoice() {
+//         char choice;
+//         cout << "Player would you like to choose (r)ock, (p)aper, or (s)scissors" << endl;
+//         cin >> choice;
+//         return choice;
+//     };
+// };
 
 
 // MAIN FUNCTION 
 int main() {
     MenuManager menu;
-    Game game;
     char menuChoice;
 
-    menu.TitleScreen();
-    do (
-    game.PlayGame();
-    ) while {
+    do {
+        menu.TitleScreen();
+        menu.PrintMenu();
+        menuChoice = menu.GetMenuChoice("Enter letter of menu item: ");
+
+        switch (menuChoice) {
+            case 'R':
+            case 'r':
+                // Do this
+            break;
+
+            case 'P':
+            case 'p':
+                // Do this
+            break;
+
+            case 'S':
+            case 's':
+                // Do this
+            break;
+
+            case 'Q':
+            case 'q':
+                menuChoice = 'q';
+            break;
+        }
+     } while (
         menuChoice != 'q'
-    }
+    );
+
+    menu.ExitGame();
+    return 0;
 };
 
 
