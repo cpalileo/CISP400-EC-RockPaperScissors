@@ -18,7 +18,11 @@ private:
     int CompScore = 0;
 
 public: 
-    // Methods go here
+    // Update Games Played Method
+
+    // Update YourScore Method
+
+    // Update CompScore Method
 };
 
 class MenuManager {
@@ -63,39 +67,15 @@ public:
 
 };
 
+class GameLogic {
 
-// class Game:MenuManager {
-// private:
-//     int PlayerScore = 0;
-//     int CompScore = 0;
-//     int GameCount = 0;
-//     int SelectMove;
+    // Random generate Comp move (rock, paper, scissors)
 
-// public:
-//     void PlayGame(){
-//         PrintMenu();
+    // Take user input and check against Comp move to see who wins
 
-//         GameCount += 1;
-
-//     };
-
-//     int DisplayScore(){
-//         // logic to display score
-//     };
-// };
+};
 
 
-// class PlayerMoves {
-// private:
-//     char Choices [8] = {'R', 'r', 'P', 'p', 'S', 's', 'Q', 'q'};
-// public:
-//     char PlayerChoice() {
-//         char choice;
-//         cout << "Player would you like to choose (r)ock, (p)aper, or (s)scissors" << endl;
-//         cin >> choice;
-//         return choice;
-//     };
-// };
 
 
 // MAIN FUNCTION 
