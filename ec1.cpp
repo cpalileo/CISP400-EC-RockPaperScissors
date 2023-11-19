@@ -3,7 +3,7 @@
 # Professor:        Caleb Fowler
 # Class:            CISP 400
 # Assignment:       Rock, Paper Scissor Game (ec1)
-# Semester & Date:  Spring 2023: 10/27/2023
+# Semester & Date:  Spring 2023: 11/16/2023
 # Description:      Rock, Paper, Scissor Game
 #              
 #******************************************************/
@@ -13,6 +13,7 @@
 #include <ctime>
 using namespace std;
 
+// Game Stats class handles 1) tracking number of games, 2) keeping score, 
 class GameStats {
 private: 
     int GamesPlayed = 0;
@@ -37,6 +38,10 @@ public:
     int GetCompScore() const {return CompScore; }
 };
 
+
+// Menu Manager Class handles: 1) Printing Title Screen, 2) Printing and handling Menu, 
+// 3) Determining winner, 4) Exiting game and displaying stats,
+// 5) Keeping the screen clean, 6) Press end to continue 
 class MenuManager {
 public:
     void TitleScreen() {
@@ -99,13 +104,16 @@ public:
 
 
     void PressEnterToContinue() {
-        cout << "\nPress Enter Twice to Continue...";
+        cout << "\nPress Enter Twice to Continue..."; // Can't get it to Continue by pressing enter once
         cin.ignore(); 
         cin.get(); 
     }
 
 };
 
+
+// Game Logic class handles: 1) Random number generator, 2) Number to Comp Move converter, 
+// 3) Logic to determine the winner
 class GameLogic : public GameStats, public MenuManager {
 private: 
     char RandomSelect;
@@ -113,8 +121,6 @@ private:
     char CompMove;
 
 public: 
-
-    // Random generate Comp move (rock, paper, scissors)
     int GenerateNumber() {
         srand(time(0));
         return rand() % 3 + 1;
@@ -172,7 +178,7 @@ public:
 };
 
 
-// MAIN FUNCTION 
+// Main Function
 int main() {
     GameStats stats;
     MenuManager menu;
