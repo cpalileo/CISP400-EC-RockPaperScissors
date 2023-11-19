@@ -16,15 +16,25 @@ using namespace std;
 class GameStats {
 private: 
     int GamesPlayed = 0;
-    int YourScore = 0;
+    int PlayerScore = 0;
     int CompScore = 0;
 
 public: 
-    // Update Games Played Method
+    void GameCompleted() {
+        GamesPlayed++;
+    }
 
-    // Update YourScore Method
+    void PlayerScores() {
+        PlayerScore++;
+    }
 
-    // Update CompScore Method
+    void CompScores() {
+        CompScore++;
+    }
+
+    int GetGamesPlayed() const {return GamesPlayed; }
+    int GetPlayerScore() const {return PlayerScore; }
+    int GetCompScore() const {return CompScore; }
 };
 
 class MenuManager {
@@ -60,16 +70,30 @@ public:
         return choice;
     }
 
-    void ExitGame(){
-        cout << "\nAfter playing " << "##" << " games" << endl;
-        cout << "You won " << "##" << " times" << endl;
-        cout << "And the Computer won " << "##" << " times" << endl;
+    void ExitGame(const GameStats& stats){
+        cout << "\nAfter playing " << stats.GetGamesPlayed() << " games" << endl;
+        cout << "You won " << stats.GetPlayerScore() << " times" << endl;
+        cout << "And the Computer won " << stats.GetCompScore() << " times" << endl;
         cout << "Thank you for playing! Goodbye!\n" << endl;
+    }
+
+
+    void ClearScreen() {
+        for (int i = 0; i < 100; ++i) {
+            cout << '\n';
+        }
+    }
+
+
+    void PressEnterToContinue() {
+        cout << "\nPress Enter Twice to Continue...";
+        cin.ignore(); 
+        cin.get(); 
     }
 
 };
 
-class GameLogic {
+class GameLogic : public GameStats, public MenuManager {
 private: 
     char RandomSelect;
     char UserMove;
@@ -99,39 +123,45 @@ public:
 
     // Take user input and check against Comp move to see who wins
 
-    void DetermineWinner(char UserMove, char CompMove) {
+    void DetermineWinner(char UserMove, char CompMove, GameStats& stats) {
         if (UserMove == 'r'){
             if (CompMove == 'r') {
                 cout << "Tie, play again!" << endl;
             } else if (CompMove == 'p') {
                 cout << "You loose!" << endl;
+                stats.CompScores();
             } else if (CompMove == 's') {
                 cout << "You win!" << endl;
+                stats.PlayerScores();
             }
         } else if (UserMove == 'p') {
             if (CompMove == 'r') {
                 cout << "You win!" << endl;
+                stats.PlayerScores();
             } else if (CompMove == 'p') {
                 cout << "Tie, play again!" << endl;
             } else if (CompMove == 's') {
                 cout << "You loose!" << endl;
+                stats.CompScores();
             }
         } else if (UserMove == 's') {
             if (CompMove == 'r') {
                 cout << "You Loose!" << endl;
+                stats.CompScores();
             } else if (CompMove == 'p') {
                 cout << "You Win!" << endl;
+                stats.PlayerScores();
             } else if (CompMove == 's') {
                 cout << "Tie, Play again!" << endl;
             }            
         }
     }
-
 };
 
 
 // MAIN FUNCTION 
 int main() {
+    GameStats stats;
     MenuManager menu;
     GameLogic logic;
     char menuChoice;
@@ -139,6 +169,7 @@ int main() {
     char compMove;
 
     do {
+        menu.ClearScreen();
         menu.TitleScreen();
         menu.PrintMenu();
         menuChoice = menu.GetMenuChoice("Enter letter of menu item: ");
@@ -149,7 +180,9 @@ int main() {
                 cout << "\n" << "You play: Rock" << endl;
                 userMove = 'r';
                 compMove = logic.GenerateMove();
-                logic.DetermineWinner(userMove, compMove);
+                logic.DetermineWinner(userMove, compMove, stats);
+                menu.PressEnterToContinue();
+                stats.GameCompleted();
             break;
 
             case 'P':
@@ -157,7 +190,9 @@ int main() {
                 cout << "\n" << "You play: Paper" << endl;
                 userMove = 'p';
                 compMove = logic.GenerateMove();
-                logic.DetermineWinner(userMove, compMove);
+                logic.DetermineWinner(userMove, compMove, stats);
+                menu.PressEnterToContinue();
+                stats.GameCompleted();
             break;
 
             case 'S':
@@ -165,7 +200,9 @@ int main() {
                 cout << "\n" << "You play: Scissors" << endl;
                 userMove = 's';
                 compMove = logic.GenerateMove();
-                logic.DetermineWinner(userMove, compMove);
+                logic.DetermineWinner(userMove, compMove, stats);
+                menu.PressEnterToContinue();
+                stats.GameCompleted();
             break;
 
             case 'Q':
@@ -177,7 +214,7 @@ int main() {
         menuChoice != 'q'
     );
 
-    menu.ExitGame();
+    menu.ExitGame(stats);
     return 0;
 };
 
