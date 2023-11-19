@@ -70,10 +70,23 @@ public:
         return choice;
     }
 
+    void DetermineWinner(const GameStats& stats){
+        int Player = stats.GetPlayerScore();
+        int Comp = stats.GetCompScore();
+        if (Player > Comp) {
+            cout << "You are the Grand Champion!" << endl;
+        } else if (Player < Comp) {
+            cout << "The computer is the Grand Champion!" << endl;
+        } else {
+            cout << "You and the computer share the title of Grand Champion!" << endl;
+        }
+    }
+
     void ExitGame(const GameStats& stats){
-        cout << "\nAfter playing " << stats.GetGamesPlayed() << " games" << endl;
-        cout << "You won " << stats.GetPlayerScore() << " times" << endl;
-        cout << "And the Computer won " << stats.GetCompScore() << " times" << endl;
+        cout << "\nAfter playing " << stats.GetGamesPlayed() << " games,"
+             << " your score is " << stats.GetPlayerScore()
+             << " and the computer's score is " << stats.GetCompScore() << "." << endl;
+        DetermineWinner(stats);
         cout << "Thank you for playing! Goodbye!\n" << endl;
     }
 
