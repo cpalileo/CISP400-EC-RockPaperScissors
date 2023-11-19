@@ -9,6 +9,8 @@
 #******************************************************/
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 class GameStats {
@@ -68,20 +70,73 @@ public:
 };
 
 class GameLogic {
+private: 
+    char RandomSelect;
+    char UserMove;
+    char CompMove;
+
+public: 
 
     // Random generate Comp move (rock, paper, scissors)
+    int GenerateNumber() {
+        srand(time(0));
+        return rand() % 3 + 1;
+    }
+
+    char GenerateMove(){
+        RandomSelect = GenerateNumber();
+        if (RandomSelect == 1) {
+            cout << "Computer plays: Rock" << endl;
+            return 'r';
+        } else if (RandomSelect == 2) {
+            cout << "Computer plays: Paper" << endl;
+            return 'p';
+        } else if (RandomSelect == 3) {
+            cout << "Computer plays: Scissors" << endl;
+            return 's';
+        }
+    }
 
     // Take user input and check against Comp move to see who wins
 
+    void DetermineWinner(char UserMove, char CompMove) {
+        if (UserMove == 'r'){
+            if (CompMove == 'r') {
+                cout << "Tie, play again!" << endl;
+            } else if (CompMove == 'p') {
+                cout << "You loose!" << endl;
+            } else if (CompMove == 's') {
+                cout << "You win!" << endl;
+            }
+        } else if (UserMove == 'p') {
+            if (CompMove == 'r') {
+                cout << "You win!" << endl;
+            } else if (CompMove == 'p') {
+                cout << "Tie, play again!" << endl;
+            } else if (CompMove == 's') {
+                cout << "You loose!" << endl;
+            }
+        } else if (UserMove == 's') {
+            if (CompMove == 'r') {
+                cout << "You Loose!" << endl;
+            } else if (CompMove == 'p') {
+                cout << "You Win!" << endl;
+            } else if (CompMove == 's') {
+                cout << "Tie, Play again!" << endl;
+            }            
+        }
+    }
+
 };
-
-
 
 
 // MAIN FUNCTION 
 int main() {
     MenuManager menu;
+    GameLogic logic;
     char menuChoice;
+    char userMove;
+    char compMove;
 
     do {
         menu.TitleScreen();
@@ -91,17 +146,26 @@ int main() {
         switch (menuChoice) {
             case 'R':
             case 'r':
-                // Do this
+                cout << "\n" << "You play: Rock" << endl;
+                userMove = 'r';
+                compMove = logic.GenerateMove();
+                logic.DetermineWinner(userMove, compMove);
             break;
 
             case 'P':
             case 'p':
-                // Do this
+                cout << "\n" << "You play: Paper" << endl;
+                userMove = 'p';
+                compMove = logic.GenerateMove();
+                logic.DetermineWinner(userMove, compMove);
             break;
 
             case 'S':
             case 's':
-                // Do this
+                cout << "\n" << "You play: Scissors" << endl;
+                userMove = 's';
+                compMove = logic.GenerateMove();
+                logic.DetermineWinner(userMove, compMove);
             break;
 
             case 'Q':
